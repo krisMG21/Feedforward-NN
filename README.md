@@ -1,6 +1,5 @@
 # Feedforward-NN
 
-> [!IMPORTANT] Description
 > Adaptable ( I/O-wise ) neural network written in Python
 
 ## What is this?
@@ -110,14 +109,14 @@ For the moment, the tests consist of:
 > Both the training and testing data should be in the same format
 > (number of columns, csv file, etc.), as the configuration is set
 > to.
->
+
 > [!NOTE]
 > Names of the csv are not important, as long as the train and test
 > data sets are different (the model is trained on one, tested on another).
 
 ### TODO
 
-- [-] Revise the code and documentation
+- [x] Revise the code and documentation
 - [x] Implement save and load of the network
 - [ ] Implement a way to visualize the network
 - [ ] Implement a way to export / import the network
