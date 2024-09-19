@@ -130,7 +130,7 @@ Please make sure to update tests as appropriate.
 
 ## Author
 
-- **Cristian Marquez** - *Initial work* - [CristianMarquez](https://github.com/CristianMarquez)
+- **Cristian Marquez** - *Initial work* - [krisMG21](https://github.com/krisMG21)
 
 ## License
 
