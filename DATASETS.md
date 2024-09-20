@@ -2,16 +2,17 @@
 
 ## Training
 
-Here we will link the datasets used for training the network.
+[Training Zip File](https://drive.google.com/file/d/1F8L21AVVZyl60fo1xwskTHIflG_rGtvm/view?usp=drive_link)
 
 ## Testing
 
-And here the ones used for testing.
+[Testing Zip File](https://drive.google.com/file/d/1S7Lr6bR9T5WylrBIw-P8tT2t1e_3wDwv/view?usp=drive_link)
 
 ## Other
 
-Other datasets will probably not be needed to include in the
-repository, but generated locally with aditional scripts
-built for the purpose of the network.
+MNIST Branch contains a .py that reads images like the ones the MNIST dataset uses,
+and converts them all into a singe .csv file. 
 
-We can list and document them here tho.
+Here are some of the ones I've proportioned:
+
+[User entries](https://drive.google.com/file/d/1C7TOnmeqmBT4vtNDyqm6WODWRFKYLT6R/view?usp=sharing)

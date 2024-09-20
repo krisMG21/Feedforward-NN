@@ -13,10 +13,7 @@ def main(csv_file, mode):
     data = np.array(data)
     m, n = data.shape
 
-    if m != config["output_size"] or n != config["input_size"]:
-        print("Error: Data and configuration do not match")
-        exit(1)
-
+    # Shuffle data
     np.random.shuffle(data)
     data_train = data[0:m].T
 
@@ -24,6 +21,18 @@ def main(csv_file, mode):
     X_train = data_train[1:n]
     X_train = X_train / X_train.max()  # Normalize
 
+    # Check if the number of inputs and outputs match the configuration
+    outputs = Y_train.max() - Y_train.min() + 1
+    inputs = X_train.shape[0]
+
+    if outputs != config["output_size"] or inputs != config["input_size"]:
+        print("Error: Number of inputs and outputs does not match the configuration")
+        print("Expected: ", config["input_size"], config["output_size"])
+        print("Got: ", inputs, outputs)
+        exit()
+
+
+    # Initialize weights and biases
     W1, b1, W2, b2 = np.array(""), np.array(""), np.array(""), np.array("")
 
     if mode == 'train':
@@ -34,14 +43,17 @@ def main(csv_file, mode):
         W1, b1, W2, b2 = nn.init_params(config)
 
         # See 20 first (if possible) predictions
+        print("="*100 + "\nFirst 20 predictions:\n" + "="*100)
         for i in range(min(20, m)):
             nn.test_prediction(i, W1, b1, W2, b2, X_train, Y_train)
 
         # Test accuracy
+        print("="*100 + "\nAccuracy:\n" + "="*100)
         _, _, _, A2 = nn.forward_prop(W1, b1, W2, b2, X_train)
         print(nn.get_accuracy(nn.get_predictions(A2), Y_train))
 
         # See fails
+        print("="*100 + "\nFails:\n" + "="*100)
         nn.show_fails(W1, b1, W2, b2, X_train, Y_train)
 
     # Serializing of network status

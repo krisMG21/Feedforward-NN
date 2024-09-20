@@ -1,77 +1,33 @@
-# Feedforward-NN
+# MNIST-NN
 
-> Adaptable ( I/O-wise ) neural network written in Python
+> Implemented from main branch for MNIST dataset
 
-## What is this?
+## Features
 
-This is a simple neural network written in Python.
-It is designed to be adaptable to any input and output data.
+The available datasets are linked in the [DATASETS.md](DATASETS.md) file.
 
-It's derive from a MNIST neural network made from scratch,
-in a code tutorial + concept explanation [video](https://youtu.be/w8yWXqWQYmU?si=vzrMdSi5JYNYPyKD)
-from [Samson Zhang](https://www.samsonzhang.com/).
+If the datasets fall short for you, you can produce your own datasets!
+With the [img_interpreter.py](img_interpreter.py) file, you can convert your
+images into a .csv file.
 
-Given a set of clasified data, the network will train on it,
-and each iteration it will be able to classify new data more
-precisely.
+### Converting images to .csv
 
-## How does it work?
+In the Images_for_csv folder, you can find a gimp file prepared for drawing
+suitable numbers, which ```img_interpreter.py``` will read and convert into
+a .csv file.
 
-The network is made up of an input layer, a hidden layer, and
-an output layer. The input layer receives the input data, and it
-propagates to the forward layers until it reaches the output.
+With the code as it is, the number the image represents is read from the
+first character of the filename, so the 1 images must be named 1_0.png,
+1_1.png, 1number.png, and so on.
 
-Effectively, the network is stored in a bunch of matrices, one
-for each layer, another one for each connection between layers,
-all of them storing the weights and biases of each neuron.
+> [!NOTE]
+> The folder name is not important, but needs to be the same as the code
+> in ```img_interpreter.py``` tries to read the images from.
 
-This means the input 'flows' through the network, like power
-through a circuit, getting amplified or attenuated by the cables,
-collected and modified by the neurons, which pass them on, finally
-reaching the output.
+The use of the source code is the same as in the main branch, but i'll
+keep it here too, just in case.
 
-![gif](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.makeagif.com%2Fmedia%2F11-07-2017%2FYSd8yg.gif&f=1&nofb=1&ipt=5f1fc71fb28fd4694c2500d1d2acceaa23e1d23376523750c95584876b9625e8&ipo=images)
-
-> [!NOTE] Source
-> From 3Blue1Brown' video [here](https://www.youtube.com/watch?v=aircAruvnKk&t=135s),
-> he has a full course on neural networks, amazingly animated.
-
-This transforms the values of the input all across the network,
-and the output is the result of the last neuron (0 to 1) or
-the most 'powered' neuron's index in the last later (0 to N).
-
-## How to use it?
-
-### Configuration
-
-To configure the network, you need to modify the parameters in
-the `config.json` file, to the corresponding number of inputs,
-hidden layer's size, and outputs.
-
-For the moment, the depth of the network is not configurable,
-given that a single hidden layer is performant enough, and the
-increase in depth (apart from the tedious refactoring) would
-not be that much distinguishable.
-
-### Training
-
-To train the network, you need to provide it with a set of data
-with it's corresponding labels, in the form of a .csv file.
-
-The first column of the .csv file should be the output data or
-label, and the following columns should be the input data.
-
-If you have a .csv file with the following data
-(for example, parity of the input data):
-
-| Output | Input 1 | Input 2 | Input 3 |
-| ------ | ------- | ------- | ------- |
-| 0      | 1       | 0       | 1       |
-| 1      | 0       | 1       | 0       |
-| 0      | 0       | 0       | 0       |
-| 1      | 1       | 1       | 1       |
-| 0      | 0       | 1       | 1       |
-| ...    | ...     | ...     | ...     |
+## Usage
 
 You can train the network with the following command:
 
@@ -79,54 +35,11 @@ You can train the network with the following command:
 python3 main.py ./train.csv --mode train
 ```
 
-### Testing
-
-To test the network, you need to provide it with a set of data
-in the same format as before.
-
-For example, if you have a .csv file with the following data:
-
-| Output | Input 1 | Input 2 | Input 3 |
-| ------ | ------- | ------- | ------- |
-| 1      | 1       | 0       | 0       |
-| 1      | 0       | 0       | 1       |
-| 0      | 1       | 1       | 0       |
-| ...    | ...     | ...     | ...     |
-
 You can test the network with the following command:
 
 ```bash
 python3 main.py ./test.csv --mode test
 ```
-
-For the moment, the tests consist of:
-
-- A test on the first 20 predictions
-- A test on the accuracy on the whole dataset
-- A visualization and count of all the fails
-
-> [!NOTE]
-> Both the training and testing data should be in the same format
-> (number of columns, csv file, etc.), as the configuration is set
-> to.
-
-> [!NOTE]
-> Names of the csv are not important, as long as the train and test
-> data sets are different (the model is trained on one, tested on another).
-
-### TODO
-
-- [x] Revise the code and documentation
-- [x] Implement save and load of the network
-- [ ] Implement a way to visualize the network
-- [ ] Implement a way to export / import the network
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to
-discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## Author
 

@@ -176,7 +176,7 @@ def paint_number(index, X):
     plt.ion()  # Turn on interactive mode
     plt.show(block=False)  # Show the plot without blocking, and wait for user input
     plt.pause(0.5)  # Pause to allow the plot to update
-    time.sleep(2)  # Display for 5 seconds (or adjust as needed)
+    time.sleep(1)  # Display for 5 seconds (or adjust as needed)
     plt.close()  # Close the plot
 
 def make_predictions(X, W1, b1, W2, b2):

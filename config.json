@@ -1,6 +1,5 @@
 {
-  "_comment": "The network configuration, please change the values to your needs",
-  "input_size": 1,
-  "hidden_size": 2,
-  "output_size": 3
+  "input_size": 784,
+  "hidden_size": 20,
+  "output_size": 10
 }
