@@ -2,5 +2,9 @@
   "_comment": "The network configuration, please change the values to your needs",
   "input_size": 1,
   "hidden_size": 2,
-  "output_size": 3
+  "output_size": 3,
+  "_comment1": "Multiple test functions, enable / disable here",
+  "show_first": 20,
+  "show_accuracy": true,
+  "show_fails": true
 }

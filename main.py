@@ -34,14 +34,17 @@ def main(csv_file, mode):
         W1, b1, W2, b2 = nn.init_params(config)
 
         # See 20 first (if possible) predictions
-        for i in range(min(20, m)):
+        print("="*100 + "\nFirst 20 predictions:\n" + "="*100)
+        for i in range(min(config["show_first"], m)):
             nn.test_prediction(i, W1, b1, W2, b2, X_train, Y_train)
 
         # Test accuracy
+        print("="*100 + "\nAccuracy:\n" + "="*100)
         _, _, _, A2 = nn.forward_prop(W1, b1, W2, b2, X_train)
         print(nn.get_accuracy(nn.get_predictions(A2), Y_train))
 
         # See fails
+        print("="*100 + "\nFails:\n" + "="*100)
         nn.show_fails(W1, b1, W2, b2, X_train, Y_train)
 
     # Serializing of network status
