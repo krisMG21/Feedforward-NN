@@ -1,5 +1,11 @@
 {
+  "_comment": "The network configuration, please change the values to your needs",
   "input_size": 784,
   "hidden_size": 20,
-  "output_size": 10
+  "output_size": 10,
+  "_comment1": "Multiple test functions, enable / disable here",
+  "show_first": 20,
+  "show_accuracy": true,
+  "show_fails": true,
+  "show_images": false
 }

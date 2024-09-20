@@ -7,7 +7,9 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
-def init_params(config):
+config = json.load(open("config.json"))
+
+def init_params():
     '''
     config: dict {
         "input_size": int,
@@ -149,7 +151,7 @@ def gradient_descent(X, Y, alpha, iterations, m, config):
     For feedback, each 10 iterations some info is given, such as the predictions and their corresponding values,
     as well as the current accuracy '''
 
-    W1, b1, W2, b2 = init_params(config)
+    W1, b1, W2, b2 = init_params()
     for i in range(iterations):
         Z1, A1, _, A2 = forward_prop(W1, b1, W2, b2, X)
         dW1, db1, dW2, db2 = backward_prop(Z1, A1, A2, W2, X, Y, m)
@@ -194,8 +196,9 @@ def test_prediction(index, W1, b1, W2, b2, X_train, Y_train):
     label = Y_train[index]
     print("Prediction: ", prediction)
     print("Label: ", label)
-    
-    paint_number(index,X_train)
+
+    if config["show_images"]:
+        paint_number(index,X_train)
 
 def show_fails(W1, b1, W2, b2, X_train, Y_train):
     index = 0
