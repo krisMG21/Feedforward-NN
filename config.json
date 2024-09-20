@@ -6,6 +6,6 @@
   "_comment1": "Multiple test functions, enable / disable here",
   "show_first": 20,
   "show_accuracy": true,
-  "show_fails": true,
-  "show_images": false
+  "show_fails": false,
+  "show_images": true
 }
