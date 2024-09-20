@@ -80,6 +80,11 @@ You can train the network with the following command:
 python3 main.py ./train.csv --mode train
 ```
 
+> [!NOTE]
+> The state of the network will be saved into a
+> nn_weights.json, if you want to reset the network
+> move, rename or delete the file
+
 ### Testing
 
 To test the network, you need to provide it with a set of data
