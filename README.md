@@ -32,7 +32,8 @@ reaching the output.
 
 ![gif](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.makeagif.com%2Fmedia%2F11-07-2017%2FYSd8yg.gif&f=1&nofb=1&ipt=5f1fc71fb28fd4694c2500d1d2acceaa23e1d23376523750c95584876b9625e8&ipo=images)
 
-> [!NOTE] Source
+> [!NOTE]
+> **Source**
 > From 3Blue1Brown' video [here](https://www.youtube.com/watch?v=aircAruvnKk&t=135s),
 > he has a full course on neural networks, amazingly animated.
 
