@@ -1,11 +1,10 @@
 import numpy as np
-import time
 import json
 import os.path
 
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('TkAgg')
+# import matplotlib.pyplot as plt
 
 def init_params(config):
     '''
@@ -162,23 +161,6 @@ def gradient_descent(X, Y, alpha, iterations, m, config):
 
     return W1, b1, W2, b2
 
-def paint_number(index, X):
-    '''
-    index: int, X: [int, int] --> null
-    Given X dataset and an index, prints on screen the number that it is stored
-    '''
-    current_image = X[:, index, None]
-    current_image = current_image.reshape((28, 28)) * 255
-    
-    plt.gray()
-    plt.imshow(current_image, interpolation='nearest')
-    
-    plt.ion()  # Turn on interactive mode
-    plt.show(block=False)  # Show the plot without blocking, and wait for user input
-    plt.pause(0.5)  # Pause to allow the plot to update
-    time.sleep(2)  # Display for 5 seconds (or adjust as needed)
-    plt.close()  # Close the plot
-
 def make_predictions(X, W1, b1, W2, b2):
     '''
     X,W1...b2: [int,int] --> predictions[int]
@@ -194,8 +176,6 @@ def test_prediction(index, W1, b1, W2, b2, X_train, Y_train):
     label = Y_train[index]
     print("Prediction: ", prediction)
     print("Label: ", label)
-    
-    paint_number(index,X_train)
 
 def show_fails(W1, b1, W2, b2, X_train, Y_train):
     index = 0
@@ -207,10 +187,9 @@ def show_fails(W1, b1, W2, b2, X_train, Y_train):
         if prediction != label:
             print("Prediction: ", prediction)
             print("Label: ", label)
-            paint_number(index,X_train)
-
             fails += 1
 
         index +=1
+
     print(f"Total of wrong predictions: {fails}")
 
