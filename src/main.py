@@ -35,10 +35,11 @@ def main(csv_file, mode):
     # Initialize weights and biases
     W1, b1, W2, b2 = np.array(""), np.array(""), np.array(""), np.array("")
 
+    # Train or test
     if mode == 'train':
         print("Training...")
         iterations = int(input("Number of iterations desired: "))
-        W1, b1, W2, b2 = nn.gradient_descent(X_train, Y_train, 0.10, iterations, m, config)
+        W1, b1, W2, b2 = nn.gradient_descent(X_train, Y_train, 0.10, iterations, m)
     elif mode == 'test':
         W1, b1, W2, b2 = nn.init_params()
 

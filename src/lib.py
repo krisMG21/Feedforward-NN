@@ -1,11 +1,8 @@
 import numpy as np
-import time
 import json
 import os.path
 
-import matplotlib
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
+from src.visual import paint_number
 
 config = json.load(open("config.json"))
 
@@ -34,7 +31,7 @@ def init_params():
         b1 = np.array(data["b1"])
         W2 = np.array(data["W2"])
         b2 = np.array(data["b2"])
-        
+
     else:
 
         #We initialize with small values to push the accurracy improvement a bit further
@@ -42,9 +39,9 @@ def init_params():
         b1 = np.random.normal(size=(hidden_size, 1)) * np.sqrt(1./hidden_size) 
         W2 = np.random.normal(size=(output_size, hidden_size)) * np.sqrt(1./hidden_size)
         b2 = np.random.normal(size=(output_size, 1)) * np.sqrt(1./(input_size))
-    
+
     return W1, b1, W2, b2
-    
+
 def ReLU(Z):
     '''
     Z[int, int] --> [int,int]  (in this program) \n
@@ -102,7 +99,7 @@ def backward_prop(Z1, A1, A2, W2, X, Y, m):
     dZ2 = A2 - one_hot_Y
     dW2 = 1 / m * dZ2.dot(A1.T)
     db2 = 1 / m * np.sum(dZ2)
-    
+
     dZ1 = W2.T.dot(dZ2) * ReLU_deriv(Z1)
     dW1 = 1 / m * dZ1.dot(X.T)
     db1 = 1 / m * np.sum(dZ1)
@@ -115,9 +112,9 @@ def update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha):
     using alpha factor, arbitrary and determined when calling
     '''
     W1 = W1 - alpha * dW1
-    b1 = b1 - alpha * db1    
-    W2 = W2 - alpha * dW2  
-    b2 = b2 - alpha * db2    
+    b1 = b1 - alpha * db1
+    W2 = W2 - alpha * dW2
+    b2 = b2 - alpha * db2
     return W1, b1, W2, b2
 
 def get_predictions(A2):
@@ -136,7 +133,7 @@ def get_accuracy(predictions, Y):
     print(predictions, Y)
     return np.sum(predictions == Y) / Y.size
 
-def gradient_descent(X, Y, alpha, iterations, m, config):
+def gradient_descent(X, Y, alpha, iterations, m):
     '''
     X,Y: [int,int],
     alpha: float,
@@ -156,30 +153,14 @@ def gradient_descent(X, Y, alpha, iterations, m, config):
         Z1, A1, _, A2 = forward_prop(W1, b1, W2, b2, X)
         dW1, db1, dW2, db2 = backward_prop(Z1, A1, A2, W2, X, Y, m)
         W1, b1, W2, b2 = update_params(W1, b1, W2, b2, dW1, db1, dW2, db2, alpha)
-        
-        if i % 10 == 0: #Printing intervals
+
+        #Printing intervals
+        if i % 10 == 0: 
             print("Iteration: ", i)
             predictions = get_predictions(A2)
             print(get_accuracy(predictions, Y))
 
     return W1, b1, W2, b2
-
-def paint_number(index, X):
-    '''
-    index: int, X: [int, int] --> null
-    Given X dataset and an index, prints on screen the number that it is stored
-    '''
-    current_image = X[:, index, None]
-    current_image = current_image.reshape((28, 28)) * 255
-    
-    plt.gray()
-    plt.imshow(current_image, interpolation='nearest')
-    
-    plt.ion()  # Turn on interactive mode
-    plt.show(block=False)  # Show the plot without blocking, and wait for user input
-    plt.pause(0.5)  # Pause to allow the plot to update
-    time.sleep(1)  # Display for 5 seconds (or adjust as needed)
-    plt.close()  # Close the plot
 
 def make_predictions(X, W1, b1, W2, b2):
     '''
@@ -206,7 +187,7 @@ def show_fails(W1, b1, W2, b2, X_train, Y_train):
     for _ in X_train:
         prediction = make_predictions(X_train[:, index, None], W1, b1, W2, b2)
         label = Y_train[index]
-        
+
         if prediction != label:
             print("Prediction: ", prediction)
             print("Label: ", label)
