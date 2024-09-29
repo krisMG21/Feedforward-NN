@@ -22,7 +22,8 @@ def init_params():
     '''
     input_size = config["input_size"]
     hidden_size = config["hidden_size"]
-    output_size = config["output_size"]
+    output_range = config["output_range"]
+    output_size = output_range[1] - output_range[0] + 1
 
     if os.path.isfile('nn_weights.json'):                   #Values exists in a file from previous execution
         with open("nn_weights.json", "r") as json_file:     #and so we load them to keep training and making progress
@@ -184,17 +185,23 @@ def test_prediction(index, W1, b1, W2, b2, X_train, Y_train):
 def show_fails(W1, b1, W2, b2, X_train, Y_train):
     index = 0
     fails = 0
-    for _ in X_train:
+
+    n = X_train.shape[1]
+
+    for _ in range(n):
         prediction = make_predictions(X_train[:, index, None], W1, b1, W2, b2)
         label = Y_train[index]
 
         if prediction != label:
             print("Prediction: ", prediction)
             print("Label: ", label)
-            paint_number(index,X_train)
+
+            if config["show_images"]:
+                paint_number(index,X_train)
 
             fails += 1
 
         index +=1
+
     print(f"Total of wrong predictions: {fails}")
 
