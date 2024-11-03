@@ -1,6 +1,6 @@
 # Feedforward-NN
 
-> Adaptable ( I/O-wise ) neural network written in Python
+> Adaptable neural network written in Python
 
 ## What is this?
 
